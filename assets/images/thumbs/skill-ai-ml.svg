@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="450" height="180">
+  <defs>
+    <linearGradient id="s1_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0c1b"/>
+      <stop offset="50%" stop-color="#1a0f2e"/>
+      <stop offset="100%" stop-color="#2d124d"/>
+    </linearGradient>
+    <linearGradient id="s1_glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff5e62"/>
+      <stop offset="100%" stop-color="#ff9966"/>
+    </linearGradient>
+    <linearGradient id="s1_cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+    <filter id="glow_filter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Capsule -->
+  <rect width="500" height="200" rx="100" fill="url(#s1_bg)"/>
+  <rect width="496" height="196" x="2" y="2" rx="98" fill="none" stroke="url(#s1_glow)" stroke-opacity="0.5" stroke-width="2"/>
+
+  <!-- EEG Waveform Background -->
+  <path d="M 30 100 Q 60 100 80 70 T 120 130 T 160 50 T 200 150 T 240 80 T 280 110 T 320 90 T 360 100 L 470 100" fill="none" stroke="#00f2fe" stroke-opacity="0.25" stroke-width="2"/>
+  <path d="M 30 100 Q 60 100 80 70 T 120 130 T 160 50 T 200 150 T 240 80 T 280 110 T 320 90 T 360 100 L 470 100" fill="none" stroke="#00f2fe" stroke-opacity="0.8" stroke-width="2" stroke-dasharray="12 12"/>
+
+  <!-- Neural Network Connections -->
+  <g stroke="#ff758c" stroke-width="1.5" stroke-opacity="0.6">
+    <!-- Layer 1 to 2 -->
+    <line x1="80" y1="60" x2="170" y2="50"/>
+    <line x1="80" y1="60" x2="170" y2="100"/>
+    <line x1="80" y1="60" x2="170" y2="150"/>
+    
+    <line x1="80" y1="140" x2="170" y2="50"/>
+    <line x1="80" y1="140" x2="170" y2="100"/>
+    <line x1="80" y1="140" x2="170" y2="150"/>
+
+    <!-- Layer 2 to 3 -->
+    <line x1="170" y1="50" x2="260" y2="70"/>
+    <line x1="170" y1="50" x2="260" y2="130"/>
+    <line x1="170" y1="100" x2="260" y2="70"/>
+    <line x1="170" y1="100" x2="260" y2="130"/>
+    <line x1="170" y1="150" x2="260" y2="70"/>
+    <line x1="170" y1="150" x2="260" y2="130"/>
+
+    <!-- Layer 3 to Output -->
+    <line x1="260" y1="70" x2="350" y2="100"/>
+    <line x1="260" y1="130" x2="350" y2="100"/>
+  </g>
+
+  <!-- Neural Network Nodes (Glowing Circles) -->
+  <!-- Layer 1 -->
+  <circle cx="80" cy="60" r="10" fill="url(#s1_glow)" filter="url(#glow_filter)"/>
+  <circle cx="80" cy="140" r="10" fill="url(#s1_glow)" filter="url(#glow_filter)"/>
+
+  <!-- Layer 2 -->
+  <circle cx="170" cy="50" r="12" fill="url(#s1_cyan)" filter="url(#glow_filter)"/>
+  <circle cx="170" cy="100" r="12" fill="url(#s1_glow)" filter="url(#glow_filter)"/>
+  <circle cx="170" cy="150" r="12" fill="url(#s1_cyan)" filter="url(#glow_filter)"/>
+
+  <!-- Layer 3 -->
+  <circle cx="260" cy="70" r="12" fill="url(#s1_glow)" filter="url(#glow_filter)"/>
+  <circle cx="260" cy="130" r="12" fill="url(#s1_cyan)" filter="url(#glow_filter)"/>
+
+  <!-- Output Node -->
+  <circle cx="350" cy="100" r="16" fill="url(#s1_glow)" filter="url(#glow_filter)"/>
+  <text x="350" y="105" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">AI</text>
+
+  <!-- AI Brain Core Badge Right Side -->
+  <rect x="390" y="55" width="80" height="90" rx="14" fill="#1e1035" stroke="#ff758c" stroke-width="1.5"/>
+  <text x="430" y="85" fill="#ff758c" font-family="Segoe UI, sans-serif" font-size="20" text-anchor="middle">🧠</text>
+  <text x="430" y="108" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">DEEP</text>
+  <text x="430" y="125" fill="#00f2fe" font-family="Segoe UI, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">LEARNING</text>
+</svg>

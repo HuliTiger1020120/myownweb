@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="450" height="180">
+  <defs>
+    <linearGradient id="s3_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09131a"/>
+      <stop offset="50%" stop-color="#0f2636"/>
+      <stop offset="100%" stop-color="#143c54"/>
+    </linearGradient>
+    <linearGradient id="react_glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d8ff"/>
+      <stop offset="100%" stop-color="#0088ff"/>
+    </linearGradient>
+    <linearGradient id="tailwind_glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Capsule -->
+  <rect width="500" height="200" rx="100" fill="url(#s3_bg)"/>
+  <rect width="496" height="196" x="2" y="2" rx="98" fill="none" stroke="url(#react_glow)" stroke-opacity="0.5" stroke-width="2"/>
+
+  <!-- React Atom Orbital Rings (Center-Left) -->
+  <g transform="translate(130, 100)">
+    <!-- Orbit 1 -->
+    <ellipse rx="55" ry="20" fill="none" stroke="#00d8ff" stroke-width="2.5" stroke-opacity="0.8" transform="rotate(0)"/>
+    <!-- Orbit 2 -->
+    <ellipse rx="55" ry="20" fill="none" stroke="#00d8ff" stroke-width="2.5" stroke-opacity="0.8" transform="rotate(60)"/>
+    <!-- Orbit 3 -->
+    <ellipse rx="55" ry="20" fill="none" stroke="#00d8ff" stroke-width="2.5" stroke-opacity="0.8" transform="rotate(120)"/>
+    <!-- Nucleus -->
+    <circle r="12" fill="#00d8ff"/>
+  </g>
+
+  <!-- Desktop App Window Mockup (Center-Right) -->
+  <rect x="230" y="45" width="160" height="110" rx="8" fill="#0b1724" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5"/>
+  <path d="M 230 53 A 8 8 0 0 1 238 45 L 382 45 A 8 8 0 0 1 390 53 L 390 65 L 230 65 Z" fill="#13263b"/>
+  <circle cx="245" cy="55" r="3" fill="#ef4444"/>
+  <circle cx="255" cy="55" r="3" fill="#f59e0b"/>
+  <circle cx="265" cy="55" r="3" fill="#10b981"/>
+
+  <!-- Code / UI Blocks in Mockup -->
+  <rect x="245" y="75" width="55" height="18" rx="4" fill="url(#tailwind_glow)"/>
+  <text x="272" y="87" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="9" font-weight="bold" text-anchor="middle">React</text>
+
+  <rect x="310" y="75" width="65" height="18" rx="4" fill="#000000" stroke="#ffffff" stroke-width="0.8"/>
+  <text x="342" y="87" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Next.js</text>
+
+  <rect x="245" y="102" width="130" height="8" rx="4" fill="#1e3a5f"/>
+  <rect x="245" y="115" width="90" height="8" rx="4" fill="#38bdf8" fill-opacity="0.5"/>
+  <rect x="245" y="128" width="115" height="8" rx="4" fill="#818cf8" fill-opacity="0.5"/>
+
+  <!-- Electron Badge Right -->
+  <rect x="405" y="55" width="70" height="90" rx="14" fill="#0c1b29" stroke="#00d8ff" stroke-width="1.5"/>
+  <text x="440" y="85" fill="#00d8ff" font-family="Segoe UI, sans-serif" font-size="20" text-anchor="middle">⚛️</text>
+  <text x="440" y="108" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">ELECTRON</text>
+  <text x="440" y="125" fill="#38bdf8" font-family="Segoe UI, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">DESKTOP</text>
+</svg>

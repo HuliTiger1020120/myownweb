@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#4facfe" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" rx="16" fill="url(#bg1)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="135" x2="1200" y2="135"/>
+    <line x1="0" y1="270" x2="1200" y2="270"/>
+    <line x1="0" y1="405" x2="1200" y2="405"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="240" y1="0" x2="240" y2="675"/>
+    <line x1="480" y1="0" x2="480" y2="675"/>
+    <line x1="720" y1="0" x2="720" y2="675"/>
+    <line x1="960" y1="0" x2="960" y2="675"/>
+  </g>
+
+  <!-- Main Window Frame -->
+  <rect x="60" y="50" width="1080" height="575" rx="14" fill="#0d1322" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5" filter="url(#shadow)"/>
+  
+  <!-- Titlebar -->
+  <path d="M 60 64 A 14 14 0 0 1 74 50 L 1126 50 A 14 14 0 0 1 1140 64 L 1140 100 L 60 100 Z" fill="#151d30"/>
+  <circle cx="90" cy="75" r="6" fill="#ef4444"/>
+  <circle cx="110" cy="75" r="6" fill="#f59e0b"/>
+  <circle cx="130" cy="75" r="6" fill="#10b981"/>
+
+  <!-- Tabs -->
+  <rect x="160" y="60" width="180" height="40" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.4"/>
+  <text x="180" y="85" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">⚡ Arvitta OS Tab</text>
+  <rect x="350" y="65" width="140" height="35" rx="6" fill="#0f172a"/>
+  <text x="365" y="87" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="12">AI Assistant</text>
+
+  <!-- Navigation Bar -->
+  <rect x="60" y="100" width="1080" height="50" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.06"/>
+  <rect x="180" y="110" width="700" height="30" rx="15" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.3"/>
+  <text x="200" y="130" fill="#94a3b8" font-family="monospace" font-size="13">arvitta://browser-os/ai-workspace</text>
+  
+  <!-- Left Sidebar (AI Voice Assistant Panel) -->
+  <rect x="80" y="170" width="280" height="430" rx="10" fill="#151d30" stroke="#ffffff" stroke-opacity="0.08"/>
+  <text x="100" y="205" fill="#3b82f6" font-family="Segoe UI, sans-serif" font-size="14" font-weight="bold">🎙️ VOICE AI ASSISTANT</text>
+  <rect x="100" y="225" width="240" height="80" rx="8" fill="#1e293b"/>
+  <text x="115" y="250" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="12">"Summarize open tabs and</text>
+  <text x="115" y="270" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="12">block distraction sites"</text>
+
+  <!-- Audio Waveform Visualizer -->
+  <g fill="#3b82f6">
+    <rect x="130" y="330" width="4" height="24" rx="2"/>
+    <rect x="140" y="320" width="4" height="44" rx="2"/>
+    <rect x="150" y="310" width="4" height="60" rx="2" fill="#8b5cf6"/>
+    <rect x="160" y="325" width="4" height="34" rx="2"/>
+    <rect x="170" y="300" width="4" height="75" rx="2" fill="#38bdf8"/>
+    <rect x="180" y="315" width="4" height="50" rx="2"/>
+    <rect x="190" y="335" width="4" height="15" rx="2"/>
+  </g>
+  <text x="210" y="345" fill="#38bdf8" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Listening Active...</text>
+
+  <!-- Productivity Widgets Panel -->
+  <rect x="100" y="400" width="240" height="70" rx="8" fill="#1e293b"/>
+  <text x="115" y="425" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="12" font-weight="600">🛡️ Site Blocker: ACTIVE</text>
+  <text x="115" y="445" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="11">Social Media & Distractions Blocked</text>
+
+  <rect x="100" y="485" width="240" height="90" rx="8" fill="#1e293b"/>
+  <text x="115" y="510" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="12" font-weight="600">📑 Custom Tab Groups</text>
+  <rect x="115" y="525" width="60" height="20" rx="4" fill="#3b82f6" fill-opacity="0.3"/>
+  <text x="123" y="539" fill="#60a5fa" font-family="Segoe UI, sans-serif" font-size="10">AI Study</text>
+  <rect x="185" y="525" width="60" height="20" rx="4" fill="#10b981" fill-opacity="0.3"/>
+  <text x="193" y="539" fill="#34d399" font-family="Segoe UI, sans-serif" font-size="10">Research</text>
+
+  <!-- Main View Area (Desktop Browser Canvas) -->
+  <rect x="380" y="170" width="740" height="430" rx="10" fill="#1e293b" stroke="#ffffff" stroke-opacity="0.08"/>
+  <text x="410" y="210" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="18" font-weight="bold">ARVITTA BROWSER OS</text>
+  <text x="410" y="235" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="13">Electron & React Powered Next-Gen Intelligent Web Workspace</text>
+
+  <!-- Feature Cards Grid inside Main View -->
+  <rect x="410" y="260" width="340" height="150" rx="8" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.06"/>
+  <text x="430" y="290" fill="#60a5fa" font-family="Segoe UI, sans-serif" font-size="14" font-weight="bold">⚡ Embedded Voice AI</text>
+  <text x="430" y="315" fill="#cbd5e1" font-family="Segoe UI, sans-serif" font-size="12">Hands-free navigation & web speech synthesis</text>
+  <rect x="430" y="340" width="120" height="30" rx="6" fill="url(#accent1)"/>
+  <text x="445" y="360" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Try Voice Command</text>
+
+  <rect x="770" y="260" width="320" height="150" rx="8" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.06"/>
+  <text x="790" y="290" fill="#34d399" font-family="Segoe UI, sans-serif" font-size="14" font-weight="bold">🔒 Focus & Site Blocker</text>
+  <text x="790" y="315" fill="#cbd5e1" font-family="Segoe UI, sans-serif" font-size="12">Custom rules for deep work productivity</text>
+  <rect x="790" y="340" width="100" height="30" rx="6" fill="#10b981"/>
+  <text x="807" y="360" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold">Focus Mode</text>
+
+  <rect x="410" y="430" width="680" height="150" rx="8" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.06"/>
+  <text x="430" y="460" fill="#a78bfa" font-family="Segoe UI, sans-serif" font-size="14" font-weight="bold">📊 Smart Tab & Memory Manager</text>
+  <text x="430" y="485" fill="#cbd5e1" font-family="Segoe UI, sans-serif" font-size="12">Automatic tab hibernation reduces memory usage by up to 60%</text>
+  <!-- Progress bar -->
+  <rect x="430" y="510" width="620" height="12" rx="6" fill="#1e293b"/>
+  <rect x="430" y="510" width="480" height="12" rx="6" fill="url(#accent1)"/>
+  <text x="430" y="545" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="11">Memory Optimized: 2.1 GB Free</text>
+
+  <!-- Glowing Accent Badge -->
+  <rect x="940" y="70" width="170" height="24" rx="12" fill="url(#accent1)"/>
+  <text x="955" y="86" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold">ELECTRON + REACT</text>
+</svg>
