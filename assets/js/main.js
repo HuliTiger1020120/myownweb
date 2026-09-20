@@ -300,34 +300,48 @@
 
 
 
-    // Contact Form Web3Forms AJAX Handler with Email Validation
-    $("#contact-form").on("submit", function (e) {
-      e.preventDefault();
-      var form = $(this);
-      var emailInput = form.find('input[name="email"]');
+    // Contact Form Web3Forms AJAX Handler with Strict Proxy & Fake Email Detection
+    window.validateContactForm = function (e) {
+      var emailInput = $('#contact-email');
+      if (emailInput.length === 0) emailInput = $('input[name="email"]');
       var email = $.trim(emailInput.val()).toLowerCase();
       var errorMsg = $("#email-error-msg");
 
-      // Regex for valid email format with legitimate top-level domain (.com, .org, .edu, .in, .co, .io, .ai, etc.)
       var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
       
-      // Blocked fake or disposable email domains
-      var blockedDomains = [
-        "test.com", "example.com", "tempmail.com", "mailinator.com", "yopmail.com",
-        "10minutemail.com", "guerrillamail.com", "trashmail.com", "dispostable.com",
-        "fake.com", "abc.com", "xyz.com", "asdf.com", "sample.com", "invalid.com"
+      var proxyKeywords = [
+        "test", "temp", "proxy", "disposable", "fake", "trash", "junk", "burner",
+        "mailinator", "yopmail", "guerrilla", "10minute", "dropmail", "getnada",
+        "sharklasers", "mohmal", "crazymailing", "fakeinbox", "byom", "dispostable",
+        "maildrop", "spam", "anon", "throwaway", "example", "sample", "invalid"
       ];
 
       var parts = email.split("@");
-      var emailDomain = parts.length > 1 ? parts[1] : "";
+      var user = parts[0] || "";
+      var domain = parts.length > 1 ? parts[1] : "";
+      var domainParts = domain.split(".");
 
-      if (!emailRegex.test(email) || blockedDomains.indexOf(emailDomain) !== -1 || emailDomain.indexOf(".") === -1) {
+      var isProxyOrFake = false;
+      if (!emailRegex.test(email) || domainParts.length < 2 || user === "test" || user === "admin" || user === "123") {
+        isProxyOrFake = true;
+      } else {
+        for (var i = 0; i < proxyKeywords.length; i++) {
+          if (domain.indexOf(proxyKeywords[i]) !== -1) {
+            isProxyOrFake = true;
+            break;
+          }
+        }
+      }
+
+      if (isProxyOrFake) {
+        var msgText = "Proxy, test, or temporary emails are not permitted. Please enter your real Gmail or professional email address (e.g. name@gmail.com or name@company.com).";
         if (errorMsg.length === 0) {
-          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px;">Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).</div>');
+          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px;">' + msgText + '</div>');
         } else {
-          errorMsg.text("Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).").show();
+          errorMsg.text(msgText).show();
         }
         emailInput.addClass("is-invalid").focus();
+        if (e && e.preventDefault) e.preventDefault();
         return false;
       }
 
@@ -335,9 +349,18 @@
         errorMsg.hide();
       }
       emailInput.removeClass("is-invalid");
+      return true;
+    };
 
+    $("#contact-form").on("submit", function (e) {
+      if (!window.validateContactForm(e)) {
+        return false;
+      }
+      e.preventDefault();
+      var form = $(this);
       var btn = form.find('button[type="submit"]');
       var originalBtnText = btn.html();
+      btn.html("SENDING...").prop("disabled", true);
       btn.html("SENDING...").prop("disabled", true);
 
       var formData = new FormData(this);
