@@ -11309,6 +11309,16 @@ body.tw-magic-cursor #magic-cursor {
   .banner-three-line-shape {
     display: none !important;
   }
+
+  /* Bypass preloader and magic cursor on mobile for instant rendering, FCP/LCP optimization */
+  .preloader,
+  #magic-cursor,
+  #ball {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
 /* Visually Hidden Utility for Screen Readers & Accessibility */

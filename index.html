@@ -13,7 +13,11 @@
   <!-- Title -->
   <title>Huligesh D Hosamani Pavar | AI & ML Engineer Portfolio</title>
   <!-- Favicon -->
-  <!-- Preconnect CDN -->`n  <link rel="preconnect" href="https://unpkg.com" crossorigin />`n  <link rel="dns-prefetch" href="https://unpkg.com" />`n  <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+  <!-- Preconnect CDN -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+  <link rel="preload" as="image" href="assets/images/user-profile-nobg-mobile.png" media="(max-width: 767px)" fetchpriority="high" />
   <!-- Bootstrap -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <!-- Swiper Bundle -->
@@ -23,7 +27,7 @@
   <!-- aos -->
   <link rel="stylesheet" href="assets/css/aos.css" />
   <!-- Main css -->
-  <link rel="stylesheet" href="assets/css/main.css?v=2.1.0" />
+  <link rel="stylesheet" href="assets/css/main.css?v=4.1.0" />
 </head>
 
 <body class="tw-magic-cursor">
@@ -294,7 +298,10 @@
                   <div class="banner-three-center text-center d-flex flex-column align-items-center" data-aos="fade-up"
                     data-aos-duration="1000" data-aos-delay="200">
                     <div class="banner-three-man-img tw-mb-4" style="max-width: 380px;">
-                      <img src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar" width="380" height="420" loading="eager" fetchpriority="high" decoding="async" style="width: 100%; height: auto; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));" />
+                      <picture>
+                        <source media="(max-width: 767px)" srcset="assets/images/user-profile-nobg-mobile.png" type="image/png" />
+                        <img src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar" width="380" height="420" loading="eager" fetchpriority="high" decoding="async" style="width: 100%; height: auto; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));" />
+                      </picture>
                     </div>
                     <h3 class="banner-three-center-title tw-text-120">
                       Building Intelligent Systems & AI Solutions for Real-World Problems.
@@ -1245,39 +1252,39 @@
     </main>`n    <!-- Jquery js -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!-- phosphor Js -->
-    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/phosphor-icon.js" defer></script>
     <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/boostrap.bundle.min.js"></script>
+    <script src="assets/js/boostrap.bundle.min.js" defer></script>
     <!-- aos -->
-    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/aos.js" defer></script>
     <!-- magnific popup js -->
-    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js" defer></script>
     <!-- marquee -->
-    <script src="assets/js/jquery.marquee.min.js"></script>
+    <script src="assets/js/jquery.marquee.min.js" defer></script>
     <!-- counterup js -->
-    <script src="assets/js/purecounter.js"></script>
+    <script src="assets/js/purecounter.js" defer></script>
     <!-- swiper bundle js -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js" defer></script>
 
     <!-- gsap js -->
-    <script src="assets/js/gsap/gsap.js"></script>
+    <script src="assets/js/gsap/gsap.js" defer></script>
     <!-- Scroll plugin -->
-    <script src="assets/js/gsap/gsap-scroll-to-plugin.js"></script>
+    <script src="assets/js/gsap/gsap-scroll-to-plugin.js" defer></script>
     <!-- Scroll smoother -->
-    <script src="assets/js/gsap/gsap-scroll-smoother.js"></script>
+    <script src="assets/js/gsap/gsap-scroll-smoother.js" defer></script>
     <!-- Scroll Trigger -->
-    <script src="assets/js/gsap/gsap-scroll-trigger.js"></script>
+    <script src="assets/js/gsap/gsap-scroll-trigger.js" defer></script>
     <!-- split text -->
-    <script src="assets/js/gsap/gsap-split-text.js"></script>
+    <script src="assets/js/gsap/gsap-split-text.js" defer></script>
     <!-- chroma js -->
-    <script src="assets/js/gsap/chroma.min.js"></script>
+    <script src="assets/js/gsap/chroma.min.js" defer></script>
 
     <!-- custom GSAP -->
-    <script src="assets/js/slider-active.js"></script>
+    <script src="assets/js/slider-active.js" defer></script>
     <!-- custom GSAP -->
-    <script src="assets/js/custom-gsap.js"></script>
+    <script src="assets/js/custom-gsap.js" defer></script>
     <!-- main js -->
-    <script src="assets/js/main.js?v=4.0.0"></script>
+    <script src="assets/js/main.js?v=4.1.0" defer></script>
     <!-- cursor js -->
     <script src="assets/js/tw-cursor.js"></script>
 
