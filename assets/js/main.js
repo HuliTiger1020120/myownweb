@@ -378,6 +378,38 @@
       return true;
     };
 
+    window.showToastMessage = function (title, text, type) {
+      type = type || "success";
+      var container = document.getElementById("toast-container");
+      if (!container) return;
+
+      var toast = document.createElement("div");
+      toast.className = "toast-message " + type;
+      toast.style.cssText = "position: relative; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35); width: 320px; overflow: hidden; background-color: #ffffff; border-left: 4px solid #16a34a; box-shadow: 0 10px 25px rgba(0,0,0,0.2); padding: 14px 18px; border-radius: 8px; font-family: inherit;";
+      toast.innerHTML = 
+        '<div class="toast-message__content" style="display: flex; align-items: center; gap: 14px;">' +
+          '<div class="toast-message__icon" style="font-size: 26px; color: #16a34a; line-height: 1;"><i class="ph ph-check-circle"></i></div>' +
+          '<div style="flex-grow: 1;">' +
+            '<h6 class="toast-message__title" style="margin: 0; font-size: 1rem; font-weight: 700; color: #111827;">' + title + '</h6>' +
+            '<p class="toast-message__text" style="margin: 4px 0 0 0; font-size: 0.85rem; color: #4b5563; line-height: 1.3;">' + text + '</p>' +
+          '</div>' +
+          '<button class="toast-message__close" onclick="this.closest(\'.toast-message\').remove()" style="background: transparent; border: none; font-size: 18px; color: #9ca3af; cursor: pointer;"><i class="ph ph-x"></i></button>' +
+        '</div>';
+
+      container.appendChild(toast);
+
+      setTimeout(function () {
+        toast.classList.add("active");
+      }, 10);
+
+      setTimeout(function () {
+        toast.classList.remove("active");
+        setTimeout(function () {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 500);
+      }, 5000);
+    };
+
     window.handleContactFormSubmit = function (e) {
       if (e && e.preventDefault) e.preventDefault();
       
@@ -420,7 +452,8 @@
             btn.disabled = false;
           }
           if (response.status == 200) {
-            alert("Thank you! Your message has been sent successfully to Huligesh D Hosamani Pavar.");
+            window.showToastMessage("Message Sent Successfully!", "Thank you for reaching out. I will get back to you shortly.", "success");
+            alert("Message Sent Successfully!\n\nThank you for reaching out to Huligesh D Hosamani Pavar. Your message has been sent successfully and I will reply back to your email address shortly.");
             form.reset();
             var errorMsg = document.getElementById("email-error-msg");
             if (errorMsg) errorMsg.style.display = "none";
