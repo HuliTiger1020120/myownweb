@@ -23,7 +23,7 @@
   ////////////////////////////////////////////////////
   // 01. Smooth Scroll Js
   let smoother;
-  if ($("#smooth-wrapper").length && $("#smooth-content").length) {
+  if ($("#smooth-wrapper").length && $("#smooth-content").length && $(window).width() > 991) {
     gsap.registerPlugin(
       ScrollTrigger,
       ScrollSmoother,
@@ -34,8 +34,8 @@
       nullTargetWarn: false,
     });
     smoother = ScrollSmoother.create({
-      smoothTouch: 0.2,
-      smooth: 4,
+      smoothTouch: 0,
+      smooth: 0.8,
       effects: true,
       normalizeScroll: false,
       ignoreMobileResize: true,
@@ -103,13 +103,13 @@
 
   ////////////////////////////////////////////////////
   // 03. Text Invart Js
-  if ($(".tw-itm-title tw-itm-anim").length) {
+  if ($(".tw-itm-title.tw-itm-anim").length) {
     let staggerAmount = 0.03,
       translateXValue = 20,
       delayValue = 0.1,
       easeType = "power2.out",
       animatedTextElements = document.querySelectorAll(
-        ".tw-itm-title tw-itm-anim",
+        ".tw-itm-title.tw-itm-anim",
       );
 
     animatedTextElements.forEach((element) => {
@@ -642,5 +642,13 @@
       pinSpacing: false,
       scrub: 1,
     },
+  });
+  window.addEventListener("load", function () {
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+    if (typeof AOS !== "undefined") {
+      AOS.refresh();
+    }
   });
 })(jQuery);

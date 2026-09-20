@@ -298,31 +298,40 @@
       });
     }
 
-    // Contact Form AJAX Handler
+
+
+    // Contact Form Web3Forms AJAX Handler
     $("#contact-form").on("submit", function (e) {
       e.preventDefault();
       var form = $(this);
       var btn = form.find('button[type="submit"]');
       var originalBtnText = btn.html();
-      btn.html("SENDING MESSAGE...").prop("disabled", true);
+      btn.html("SENDING...").prop("disabled", true);
 
       var formData = new FormData(this);
-      fetch("https://formsubmit.co/ajax/huligeshdh10@gmail.com", {
+      var json = JSON.stringify(Object.fromEntries(formData));
+
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: json,
       })
-        .then(function (response) {
+        .then(async (response) => {
+          let res = await response.json();
           btn.html(originalBtnText).prop("disabled", false);
-          alert("Thank you! Your message has been sent successfully to Huligesh D Hosamani Pavar.");
-          form[0].reset();
+          if (response.status == 200) {
+            alert("Thank you! Your message has been sent successfully to Huligesh D Hosamani Pavar.");
+            form[0].reset();
+          } else {
+            alert(res.message || "Something went wrong. Please try again.");
+          }
         })
-        .catch(function (error) {
+        .catch((error) => {
           btn.html(originalBtnText).prop("disabled", false);
-          alert("Thank you! Your message has been sent successfully.");
-          form[0].reset();
+          alert("Something went wrong. Please try again.");
         });
     });
 
