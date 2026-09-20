@@ -300,10 +300,42 @@
 
 
 
-    // Contact Form Web3Forms AJAX Handler
+    // Contact Form Web3Forms AJAX Handler with Email Validation
     $("#contact-form").on("submit", function (e) {
       e.preventDefault();
       var form = $(this);
+      var emailInput = form.find('input[name="email"]');
+      var email = $.trim(emailInput.val()).toLowerCase();
+      var errorMsg = $("#email-error-msg");
+
+      // Regex for valid email format with legitimate top-level domain (.com, .org, .edu, .in, .co, .io, .ai, etc.)
+      var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
+      
+      // Blocked fake or disposable email domains
+      var blockedDomains = [
+        "test.com", "example.com", "tempmail.com", "mailinator.com", "yopmail.com",
+        "10minutemail.com", "guerrillamail.com", "trashmail.com", "dispostable.com",
+        "fake.com", "abc.com", "xyz.com", "asdf.com", "sample.com", "invalid.com"
+      ];
+
+      var parts = email.split("@");
+      var emailDomain = parts.length > 1 ? parts[1] : "";
+
+      if (!emailRegex.test(email) || blockedDomains.indexOf(emailDomain) !== -1 || emailDomain.indexOf(".") === -1) {
+        if (errorMsg.length === 0) {
+          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px;">Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).</div>');
+        } else {
+          errorMsg.text("Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).").show();
+        }
+        emailInput.addClass("is-invalid").focus();
+        return false;
+      }
+
+      if (errorMsg.length > 0) {
+        errorMsg.hide();
+      }
+      emailInput.removeClass("is-invalid");
+
       var btn = form.find('button[type="submit"]');
       var originalBtnText = btn.html();
       btn.html("SENDING...").prop("disabled", true);
@@ -331,7 +363,7 @@
         })
         .catch((error) => {
           btn.html(originalBtnText).prop("disabled", false);
-          alert("Something went wrong. Please try again.");
+          alert("Something went wrong. Please check your network connection and try again.");
         });
     });
 

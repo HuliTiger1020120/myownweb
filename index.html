@@ -1148,9 +1148,12 @@
                       </div>
                       <div class="col-xl-12">
                         <div class="position-relative tw-mb-7">
-                          <input type="email" name="email"
+                          <input type="email" name="email" id="contact-email"
                             class="form-control bg-transparent shadow-none tw-rounded-lg text-white tw-ps-7 tw-pe-13 tw-placeholder-text-neutral-100 focus-border-main-600 tw-h-18 focus-tw-placeholder-text-hidden tw-placeholder-transition-2"
-                            placeholder="Email Address" required />
+                            placeholder="Email Address (e.g. name@gmail.com or name@company.com)"
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$"
+                            title="Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com)"
+                            required />
                         </div>
                       </div>
                       <div class="col-xl-12">
