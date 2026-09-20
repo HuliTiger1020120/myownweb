@@ -301,14 +301,21 @@
 
 
     // Contact Form Web3Forms AJAX Handler with Strict Proxy & Fake Email Detection
-    window.validateContactForm = function (e) {
-      var emailInput = $('#contact-email');
-      if (emailInput.length === 0) emailInput = $('input[name="email"]');
+    window.validateContactForm = function (e, el) {
+      var emailEl = el || document.getElementById("contact-email") || $('input[name="email"]')[0];
+      if (!emailEl) return true;
+      var emailInput = $(emailEl);
       var email = $.trim(emailInput.val()).toLowerCase();
       var errorMsg = $("#email-error-msg");
 
       var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
       
+      var allowedProviders = [
+        "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
+        "yahoo.com", "yahoo.co.in", "ymail.com", "icloud.com", "me.com", "mac.com",
+        "proton.me", "protonmail.com", "pm.me", "zoho.com", "zohomail.com", "aol.com", "gmx.com"
+      ];
+
       var proxyKeywords = [
         "test", "temp", "proxy", "disposable", "fake", "trash", "junk", "burner",
         "mailinator", "yopmail", "guerrilla", "10minute", "dropmail", "getnada",
@@ -322,35 +329,47 @@
       var domainParts = domain.split(".");
 
       var isProxyOrFake = false;
-      if (!emailRegex.test(email) || domainParts.length < 2 || user === "test" || user === "admin" || user === "123") {
+      var reasonText = "";
+
+      if (!emailRegex.test(email) || domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2 || user === "test" || user === "admin") {
         isProxyOrFake = true;
+        reasonText = "Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).";
+      } else if (allowedProviders.indexOf(domain) !== -1) {
+        isProxyOrFake = false;
       } else {
         for (var i = 0; i < proxyKeywords.length; i++) {
           if (domain.indexOf(proxyKeywords[i]) !== -1) {
             isProxyOrFake = true;
+            reasonText = "Proxy, test, or temporary email domains (@" + domain + ") are not allowed. Please enter your real Gmail or professional email address.";
             break;
           }
         }
       }
 
       if (isProxyOrFake) {
-        var msgText = "Proxy, test, or temporary emails are not permitted. Please enter your real Gmail or professional email address (e.g. name@gmail.com or name@company.com).";
+        var msgText = reasonText || "Proxy, test, or temporary emails are not permitted. Please enter your real Gmail or professional email address.";
         if (errorMsg.length === 0) {
-          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px;">' + msgText + '</div>');
+          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px; font-weight: 600;">' + msgText + '</div>');
         } else {
           errorMsg.text(msgText).show();
         }
-        emailInput.addClass("is-invalid").focus();
+        emailInput.addClass("is-invalid");
+        if (emailEl.setCustomValidity) emailEl.setCustomValidity(msgText);
         if (e && e.preventDefault) e.preventDefault();
         return false;
       }
 
+      if (emailEl.setCustomValidity) emailEl.setCustomValidity("");
       if (errorMsg.length > 0) {
         errorMsg.hide();
       }
       emailInput.removeClass("is-invalid");
       return true;
     };
+
+    $("#contact-email").on("input change", function () {
+      window.validateContactForm(null, this);
+    });
 
     $("#contact-form").on("submit", function (e) {
       if (!window.validateContactForm(e)) {
@@ -360,7 +379,6 @@
       var form = $(this);
       var btn = form.find('button[type="submit"]');
       var originalBtnText = btn.html();
-      btn.html("SENDING...").prop("disabled", true);
       btn.html("SENDING...").prop("disabled", true);
 
       var formData = new FormData(this);

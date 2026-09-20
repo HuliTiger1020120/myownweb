@@ -23,7 +23,7 @@
   <!-- aos -->
   <link rel="stylesheet" href="assets/css/aos.css" />
   <!-- Main css -->
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/main.css?v=2.1.0" />
 </head>
 
 <body class="tw-magic-cursor">
@@ -1153,6 +1153,7 @@
                             placeholder="Email Address (e.g. name@gmail.com or name@company.com)"
                             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$"
                             title="Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com)"
+                            oninput="window.validateContactForm && window.validateContactForm(null, this)"
                             required />
                         </div>
                       </div>
@@ -1276,7 +1277,7 @@
     <!-- custom GSAP -->
     <script src="assets/js/custom-gsap.js"></script>
     <!-- main js -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=2.1.0"></script>
     <!-- cursor js -->
     <script src="assets/js/tw-cursor.js"></script>
 
