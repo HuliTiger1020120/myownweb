@@ -300,21 +300,39 @@
 
 
 
-    // Contact Form Web3Forms AJAX Handler with Strict Proxy & Fake Email Detection
-    window.validateContactForm = function (e, el) {
-      var emailEl = el || document.getElementById("contact-email") || $('input[name="email"]')[0];
-      if (!emailEl) return true;
-      var emailInput = $(emailEl);
-      var email = $.trim(emailInput.val()).toLowerCase();
-      var errorMsg = $("#email-error-msg");
+    // Contact Form Web3Forms Handler with Strict Proxy & Fake Email Detection
+    window.validateEmailAddress = function (emailStr) {
+      var email = (emailStr || "").trim().toLowerCase();
+      if (!email) return { valid: false, message: "Please enter your email address." };
 
       var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
-      
+      if (!emailRegex.test(email)) {
+        return { valid: false, message: "Please enter a valid email address format (e.g. name@gmail.com or name@company.com)." };
+      }
+
+      var parts = email.split("@");
+      var user = parts[0] || "";
+      var domain = parts[1] || "";
+      var domainParts = domain.split(".");
+
+      if (domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2) {
+        return { valid: false, message: "Please enter a valid domain extension (e.g. .com, .org, .edu, .in)." };
+      }
+
+      var blockedUsers = ["test", "admin", "123", "abc", "xyz", "demo", "asdf"];
+      if (blockedUsers.indexOf(user) !== -1) {
+        return { valid: false, message: "Test or generic email addresses are not permitted." };
+      }
+
       var allowedProviders = [
         "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
         "yahoo.com", "yahoo.co.in", "ymail.com", "icloud.com", "me.com", "mac.com",
-        "proton.me", "protonmail.com", "pm.me", "zoho.com", "zohomail.com", "aol.com", "gmx.com"
+        "proton.me", "protonmail.com", "pm.me", "zoho.com", "zohomail.com", "aol.com", "gmx.com", "mail.com"
       ];
+
+      if (allowedProviders.indexOf(domain) !== -1) {
+        return { valid: true };
+      }
 
       var proxyKeywords = [
         "test", "temp", "proxy", "disposable", "fake", "trash", "junk", "burner",
@@ -323,38 +341,31 @@
         "maildrop", "spam", "anon", "throwaway", "example", "sample", "invalid"
       ];
 
-      var parts = email.split("@");
-      var user = parts[0] || "";
-      var domain = parts.length > 1 ? parts[1] : "";
-      var domainParts = domain.split(".");
-
-      var isProxyOrFake = false;
-      var reasonText = "";
-
-      if (!emailRegex.test(email) || domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2 || user === "test" || user === "admin") {
-        isProxyOrFake = true;
-        reasonText = "Please enter a valid Gmail or professional email address (e.g. name@gmail.com or name@company.com).";
-      } else if (allowedProviders.indexOf(domain) !== -1) {
-        isProxyOrFake = false;
-      } else {
-        for (var i = 0; i < proxyKeywords.length; i++) {
-          if (domain.indexOf(proxyKeywords[i]) !== -1) {
-            isProxyOrFake = true;
-            reasonText = "Proxy, test, or temporary email domains (@" + domain + ") are not allowed. Please enter your real Gmail or professional email address.";
-            break;
-          }
+      for (var i = 0; i < proxyKeywords.length; i++) {
+        if (domain.indexOf(proxyKeywords[i]) !== -1) {
+          return { valid: false, message: "Proxy, test, or temporary email domains (@" + domain + ") are not permitted. Please enter your real Gmail or professional email address." };
         }
       }
 
-      if (isProxyOrFake) {
-        var msgText = reasonText || "Proxy, test, or temporary emails are not permitted. Please enter your real Gmail or professional email address.";
+      return { valid: true };
+    };
+
+    window.validateContactForm = function (e, el) {
+      var emailEl = el || document.getElementById("contact-email") || $('input[name="email"]')[0];
+      if (!emailEl) return true;
+      var emailInput = $(emailEl);
+      var errorMsg = $("#email-error-msg");
+
+      var check = window.validateEmailAddress(emailEl.value);
+
+      if (!check.valid) {
         if (errorMsg.length === 0) {
-          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px; font-weight: 600;">' + msgText + '</div>');
+          emailInput.after('<div id="email-error-msg" class="text-danger tw-mt-2 tw-text-sm" style="color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px; font-weight: 600;">' + check.message + '</div>');
         } else {
-          errorMsg.text(msgText).show();
+          errorMsg.text(check.message).show();
         }
         emailInput.addClass("is-invalid");
-        if (emailEl.setCustomValidity) emailEl.setCustomValidity(msgText);
+        if (emailEl.setCustomValidity) emailEl.setCustomValidity(check.message);
         if (e && e.preventDefault) e.preventDefault();
         return false;
       }
@@ -367,21 +378,31 @@
       return true;
     };
 
-    $("#contact-email").on("input change", function () {
-      window.validateContactForm(null, this);
-    });
+    window.handleContactFormSubmit = function (e) {
+      if (e && e.preventDefault) e.preventDefault();
+      
+      var form = document.getElementById("contact-form");
+      if (!form) return false;
 
-    $("#contact-form").on("submit", function (e) {
-      if (!window.validateContactForm(e)) {
+      var emailInput = document.getElementById("contact-email") || form.querySelector('input[name="email"]');
+      if (!emailInput) return false;
+
+      var check = window.validateEmailAddress(emailInput.value);
+      if (!check.valid) {
+        window.validateContactForm(e, emailInput);
+        alert(check.message);
+        emailInput.focus();
         return false;
       }
-      e.preventDefault();
-      var form = $(this);
-      var btn = form.find('button[type="submit"]');
-      var originalBtnText = btn.html();
-      btn.html("SENDING...").prop("disabled", true);
 
-      var formData = new FormData(this);
+      var btn = form.querySelector('button[type="submit"]');
+      var originalBtnText = btn ? btn.innerHTML : "SUBMIT MESSAGE";
+      if (btn) {
+        btn.innerHTML = "SENDING...";
+        btn.disabled = true;
+      }
+
+      var formData = new FormData(form);
       var json = JSON.stringify(Object.fromEntries(formData));
 
       fetch("https://api.web3forms.com/submit", {
@@ -392,20 +413,39 @@
         },
         body: json,
       })
-        .then(async (response) => {
-          let res = await response.json();
-          btn.html(originalBtnText).prop("disabled", false);
+        .then(async function (response) {
+          var res = await response.json();
+          if (btn) {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+          }
           if (response.status == 200) {
             alert("Thank you! Your message has been sent successfully to Huligesh D Hosamani Pavar.");
-            form[0].reset();
+            form.reset();
+            var errorMsg = document.getElementById("email-error-msg");
+            if (errorMsg) errorMsg.style.display = "none";
+            emailInput.classList.remove("is-invalid");
           } else {
             alert(res.message || "Something went wrong. Please try again.");
           }
         })
-        .catch((error) => {
-          btn.html(originalBtnText).prop("disabled", false);
+        .catch(function (error) {
+          if (btn) {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+          }
           alert("Something went wrong. Please check your network connection and try again.");
         });
+
+      return false;
+    };
+
+    $("#contact-email").on("input change", function () {
+      window.validateContactForm(null, this);
+    });
+
+    $("#contact-form").on("submit", function (e) {
+      return window.handleContactFormSubmit(e);
     });
 
     initRipples();

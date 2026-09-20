@@ -1133,7 +1133,7 @@
               </div>
               <div class="col-xl-6 col-lg-6">
                 <div class="footer-three-form" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return window.validateContactForm ? window.validateContactForm(event) : true">
+                  <form id="contact-form" onsubmit="return window.handleContactFormSubmit ? window.handleContactFormSubmit(event) : false">
                     <input type="hidden" name="access_key" value="4f0c6947-4443-46bc-8981-d5e1b3bd0f85">
                     <input type="hidden" name="subject" value="New Portfolio Contact Message">
                     <input type="hidden" name="from_name" value="Portfolio Website">
@@ -1277,18 +1277,44 @@
     <!-- custom GSAP -->
     <script src="assets/js/custom-gsap.js"></script>
     <!-- main js -->
-    <script src="assets/js/main.js?v=2.1.0"></script>
+    <script src="assets/js/main.js?v=3.0.0"></script>
     <!-- cursor js -->
     <script src="assets/js/tw-cursor.js"></script>
 
     <script>
-      window.validateContactForm = function(e) {
-        var emailInput = document.getElementById("contact-email") || document.querySelector('input[name="email"]');
-        if (!emailInput) return true;
-        var email = (emailInput.value || "").trim().toLowerCase();
-        var errorMsg = document.getElementById("email-error-msg");
+      window.validateEmailAddress = window.validateEmailAddress || function(emailStr) {
+        var email = (emailStr || "").trim().toLowerCase();
+        if (!email) return { valid: false, message: "Please enter your email address." };
 
         var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
+        if (!emailRegex.test(email)) {
+          return { valid: false, message: "Please enter a valid email address format (e.g. name@gmail.com or name@company.com)." };
+        }
+
+        var parts = email.split("@");
+        var user = parts[0] || "";
+        var domain = parts.length > 1 ? parts[1] : "";
+        var domainParts = domain.split(".");
+
+        if (domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2) {
+          return { valid: false, message: "Please enter a valid domain extension (e.g. .com, .org, .edu, .in)." };
+        }
+
+        var blockedUsers = ["test", "admin", "123", "abc", "xyz", "demo", "asdf"];
+        if (blockedUsers.indexOf(user) !== -1) {
+          return { valid: false, message: "Test or generic email addresses are not permitted." };
+        }
+
+        var allowedProviders = [
+          "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
+          "yahoo.com", "yahoo.co.in", "ymail.com", "icloud.com", "me.com", "mac.com",
+          "proton.me", "protonmail.com", "pm.me", "zoho.com", "zohomail.com", "aol.com", "gmx.com", "mail.com"
+        ];
+
+        if (allowedProviders.indexOf(domain) !== -1) {
+          return { valid: true };
+        }
+
         var proxyKeywords = [
           "test", "temp", "proxy", "disposable", "fake", "trash", "junk", "burner",
           "mailinator", "yopmail", "guerrilla", "10minute", "dropmail", "getnada",
@@ -1296,42 +1322,40 @@
           "maildrop", "spam", "anon", "throwaway", "example", "sample", "invalid"
         ];
 
-        var parts = email.split("@");
-        var user = parts[0] || "";
-        var domain = parts.length > 1 ? parts[1] : "";
-        var domainParts = domain.split(".");
-
-        var isProxyOrFake = false;
-        if (!emailRegex.test(email) || domainParts.length < 2 || user === "test" || user === "admin" || user === "123") {
-          isProxyOrFake = true;
-        } else {
-          for (var i = 0; i < proxyKeywords.length; i++) {
-            if (domain.indexOf(proxyKeywords[i]) !== -1) {
-              isProxyOrFake = true;
-              break;
-            }
+        for (var i = 0; i < proxyKeywords.length; i++) {
+          if (domain.indexOf(proxyKeywords[i]) !== -1) {
+            return { valid: false, message: "Proxy, test, or temporary email domains (@" + domain + ") are not permitted. Please enter your real Gmail or professional email address." };
           }
         }
 
-        if (isProxyOrFake) {
-          var msgText = "Proxy, test, or temporary emails are not permitted. Please enter your real Gmail or professional email address (e.g. name@gmail.com or name@company.com).";
+        return { valid: true };
+      };
+
+      window.validateContactForm = window.validateContactForm || function(e, el) {
+        var emailInput = el || document.getElementById("contact-email") || document.querySelector('input[name="email"]');
+        if (!emailInput) return true;
+        var errorMsg = document.getElementById("email-error-msg");
+
+        var check = window.validateEmailAddress(emailInput.value);
+
+        if (!check.valid) {
           if (!errorMsg) {
             errorMsg = document.createElement("div");
             errorMsg.id = "email-error-msg";
-            errorMsg.style.color = "#ff4d4d";
-            errorMsg.style.fontSize = "0.875rem";
-            errorMsg.style.marginTop = "6px";
+            errorMsg.className = "text-danger tw-mt-2 tw-text-sm";
+            errorMsg.style.cssText = "color: #ff4d4d !important; font-size: 0.875rem; margin-top: 6px; font-weight: 600;";
             emailInput.parentNode.appendChild(errorMsg);
           } else {
-            errorMsg.innerText = msgText;
+            errorMsg.innerText = check.message;
             errorMsg.style.display = "block";
           }
           emailInput.classList.add("is-invalid");
-          emailInput.focus();
+          if (emailInput.setCustomValidity) emailInput.setCustomValidity(check.message);
           if (e && e.preventDefault) e.preventDefault();
           return false;
         }
 
+        if (emailInput.setCustomValidity) emailInput.setCustomValidity("");
         if (errorMsg) errorMsg.style.display = "none";
         emailInput.classList.remove("is-invalid");
         return true;
