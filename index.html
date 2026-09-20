@@ -13,7 +13,7 @@
   <!-- Title -->
   <title>Huligesh D Hosamani Pavar | AI & ML Engineer Portfolio</title>
   <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+  <!-- Preconnect CDN -->`n  <link rel="preconnect" href="https://unpkg.com" crossorigin />`n  <link rel="dns-prefetch" href="https://unpkg.com" />`n  <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
   <!-- Bootstrap -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <!-- Swiper Bundle -->
@@ -66,7 +66,7 @@
 
   <!-- ==================== Scroll to Top End Here ==================== -->
   <div class="back-to-top-wrapper">
-    <button id="back_to_top" type="button" class="back-to-top-btn">
+    <button id="back_to_top" type="button" class="back-to-top-btn" aria-label="Back to top">
       <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
           stroke-linejoin="round" />
@@ -89,7 +89,7 @@
                 D.</span></a>
           </div>
           <div class="tw-offcanvas-2-close d-md-none text-end">
-            <button class="tw-offcanvas-2-close-btn tw-offcanvas-2-close-btn">
+            <button class="tw-offcanvas-2-close-btn tw-offcanvas-2-close-btn" aria-label="Close navigation menu">
               <span class="text">
                 <span class="text-white">close</span>
               </span>
@@ -112,7 +112,7 @@
       </div>
       <div class="tw-offcanvas-2-right right-box d-none d-md-block p-relative">
         <div class="tw-offcanvas-2-close text-end">
-          <button class="tw-offcanvas-2-close-btn">
+          <button class="tw-offcanvas-2-close-btn" aria-label="Close navigation menu">
             <span class="text">
               <span>close</span>
             </span>
@@ -227,9 +227,8 @@
           <!-- Menu Button Start  -->
           <div class="header-three-menu">
             <button
-              class="tw-offcanvas-open-btn tw-w-13 tw-h-13 lh-1 d-inline-flex justify-content-center align-items-center tw-transition-3 tw-rounded-md">
-              <span><img class="tw-transition-3" src="assets/images/icons/header-three-toggle.svg"
-                  alt="toggle" /></span>
+              class="tw-offcanvas-open-btn tw-w-13 tw-h-13 lh-1 d-inline-flex justify-content-center align-items-center tw-transition-3 tw-rounded-md" aria-label="Open navigation menu">
+              <span><img class="tw-transition-3" src="assets/images/icons/header-three-toggle.svg" alt="toggle" width="24" height="24" /></span>
             </button>
           </div>
           <!-- Menu Button End  -->
@@ -250,7 +249,7 @@
     </div>
   </header>
   <!-- ==================== Header End Here ==================== -->
-  <div id="smooth-wrapper">
+  <main id="main-content">`n  <div id="smooth-wrapper">
     <div id="smooth-content">
       <section class="banner-three-area" id="home">
         <div class="container tw-container-1800-px">
@@ -270,23 +269,23 @@
                     <div class="banner-three-list">
                       <ul>
                         <li class="tw-text-lg fw-medium d-inline-flex align-items-center tw-gap-2 tw-mb-4">
-                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" /></span>
+                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" width="16" height="16" loading="lazy" decoding="async" /></span>
                           Machine Learning & Deep Learning
                         </li>
                         <li class="tw-text-lg fw-medium d-inline-flex align-items-center tw-gap-2 tw-mb-4">
-                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" /></span>
+                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" width="16" height="16" loading="lazy" decoding="async" /></span>
                           EEG Signal Processing & CNNs
                         </li>
                         <li class="tw-text-lg fw-medium d-inline-flex align-items-center tw-gap-2 tw-mb-4">
-                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" /></span>
+                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" width="16" height="16" loading="lazy" decoding="async" /></span>
                           RAG & LLM Applications
                         </li>
                         <li class="tw-text-lg fw-medium d-inline-flex align-items-center tw-gap-2 tw-mb-4">
-                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" /></span>
+                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" width="16" height="16" loading="lazy" decoding="async" /></span>
                           Full-Stack AI Solutions (React, FastAPI)
                         </li>
                         <li class="tw-text-lg fw-medium d-inline-flex align-items-center tw-gap-2 tw-mb-4">
-                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" /></span>
+                          <span><img src="assets/images/icons/banner-three-pluse.svg" alt="pluse" width="16" height="16" loading="lazy" decoding="async" /></span>
                           TensorFlow, Keras & Python
                         </li>
                       </ul>
@@ -295,8 +294,7 @@
                   <div class="banner-three-center text-center d-flex flex-column align-items-center" data-aos="fade-up"
                     data-aos-duration="1000" data-aos-delay="200">
                     <div class="banner-three-man-img tw-mb-4" style="max-width: 380px;">
-                      <img src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar"
-                        style="width: 100%; height: auto; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));" />
+                      <img src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar" width="380" height="420" loading="eager" fetchpriority="high" decoding="async" style="width: 100%; height: auto; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));" />
                     </div>
                     <h3 class="banner-three-center-title tw-text-120">
                       Building Intelligent Systems & AI Solutions for Real-World Problems.
@@ -343,7 +341,7 @@
                     </div>
                   </div>
                   <div class="banner-three-line-shape position-absolute start-50 translate-middle-x z-n1">
-                    <img src="assets/images/shapes/banner-three-shape.png" alt="shape" />
+                    <img src="assets/images/shapes/banner-three-shape.png" alt="" width="600" height="600" loading="lazy" decoding="async" aria-hidden="true" />
                     <div class="banner-three-carcel-shape">
                       <div><span></span></div>
                     </div>
@@ -371,9 +369,7 @@
               <div class="col-xl-6">
                 <div class="about-three-thumb w-100 tw-clip-anim tw-rounded-lg" data-aos="fade-up"
                   data-aos-duration="1000" data-aos-delay="200">
-                  <img class="tw-anim-img w-100 tw-rounded-lg" data-animate="true"
-                    src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar"
-                    style="max-height: 550px; object-fit: contain;" />
+                  <img class="tw-anim-img w-100 tw-rounded-lg" data-animate="true" src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar" width="500" height="550" loading="lazy" decoding="async" style="max-height: 550px; object-fit: contain;" />
                 </div>
               </div>
               <div class="col-xl-6">
@@ -439,8 +435,7 @@
           </div>
         </div>
         <div>
-          <img class="about-three-shape position-absolute start-0 w-100"
-            src="assets/images/shapes/about-three-shape.png" alt="shape" />
+          <img class="about-three-shape position-absolute start-0 w-100" src="assets/images/shapes/about-three-shape.png" alt="" width="1800" height="300" loading="lazy" decoding="async" aria-hidden="true" />
         </div>
       </section>
       <!-- ======================== Marquee section start =========================== -->
@@ -485,8 +480,7 @@
                       <div>
                         <span
                           class="service-three-number text-white tw-text-xl d-inline-flex align-items-center tw-gap-3 lh-1 tw-mt-5 tw-transition-3">01
-                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg"
-                            alt="arrow" /></span>
+                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg" alt="arrow" width="20" height="20" loading="lazy" decoding="async" /></span>
                       </div>
                       <div>
                         <div>
@@ -517,8 +511,7 @@
                       </div>
                     </div>
                     <div class="service-three-thumb">
-                      <a href="#skills"><img src="assets/images/thumbs/skill-ai-ml.png"
-                          alt="AI & Machine Learning" /></a>
+                      <a href="#skills"><img src="assets/images/thumbs/skill-ai-ml.png" alt="AI & Machine Learning" width="400" height="300" loading="lazy" decoding="async" /></a>
                     </div>
                   </div>
                 </div>
@@ -529,8 +522,7 @@
                       <div>
                         <span
                           class="service-three-number text-white tw-text-xl d-inline-flex align-items-center tw-gap-3 lh-1 tw-mt-5 tw-transition-3">02
-                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg"
-                            alt="arrow" /></span>
+                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg" alt="arrow" width="20" height="20" loading="lazy" decoding="async" /></span>
                       </div>
                       <div>
                         <div>
@@ -565,8 +557,7 @@
                       </div>
                     </div>
                     <div class="service-three-thumb">
-                      <a href="#skills"><img src="assets/images/thumbs/skill-frameworks-rag.png"
-                          alt="AI Frameworks & RAG" /></a>
+                      <a href="#skills"><img src="assets/images/thumbs/skill-frameworks-rag.png" alt="AI Frameworks & RAG" width="400" height="300" loading="lazy" decoding="async" /></a>
                     </div>
                   </div>
                 </div>
@@ -576,8 +567,7 @@
                       <div>
                         <span
                           class="service-three-number text-white tw-text-xl d-inline-flex align-items-center tw-gap-3 lh-1 tw-mt-5 tw-transition-3">03
-                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg"
-                            alt="arrow" /></span>
+                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg" alt="arrow" width="20" height="20" loading="lazy" decoding="async" /></span>
                       </div>
                       <div>
                         <div>
@@ -612,8 +602,7 @@
                       </div>
                     </div>
                     <div class="service-three-thumb">
-                      <a href="#skills"><img src="assets/images/thumbs/skill-frontend-desktop.png"
-                          alt="Frontend & Desktop Apps" /></a>
+                      <a href="#skills"><img src="assets/images/thumbs/skill-frontend-desktop.png" alt="Frontend & Desktop Apps" width="400" height="300" loading="lazy" decoding="async" /></a>
                     </div>
                   </div>
                 </div>
@@ -624,8 +613,7 @@
                       <div>
                         <span
                           class="service-three-number text-white tw-text-xl d-inline-flex align-items-center tw-gap-3 lh-1 tw-mt-5 tw-transition-3">04
-                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg"
-                            alt="arrow" /></span>
+                          <img class="tw-transition-3" src="assets/images/icons/service-three-arrow.svg" alt="arrow" width="20" height="20" loading="lazy" decoding="async" /></span>
                       </div>
                       <div>
                         <div>
@@ -660,8 +648,7 @@
                       </div>
                     </div>
                     <div class="service-three-thumb">
-                      <a href="#skills"><img src="assets/images/thumbs/Backend-Programming.png"
-                          alt="Backend & Programming" /></a>
+                      <a href="#skills"><img src="assets/images/thumbs/Backend-Programming.png" alt="Backend & Programming" width="400" height="300" loading="lazy" decoding="async" /></a>
                     </div>
                   </div>
                 </div>
@@ -713,14 +700,13 @@
                     <div>
                       <div class="portfolio-three-button">
                         <a class="portfolio-three-btn tw-w-8 tw-h-8 lh-1 d-inline-flex justify-content-center align-items-center text-heading rounded-circle hover-bg-main-two-600 hover-text-white"
-                          href="https://github.com/Huligeshdh" target="_blank"><i class="ph ph-arrow-up-right"></i></a>
+                          href="https://github.com/Huligeshdh" target="_blank"><span class="visually-hidden">View Arvitta Browser OS Project</span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                       </div>
                     </div>
                   </div>
                   <div class="portfolio-thumb not-hide-cursor fw-bold mb-0 tw-rounded-lg" data-cursor="View">
                     <a class="d-block cursor-hide tw-rounded-lg" href="https://github.com/Huligeshdh"
-                      target="_blank"><img class="w-100 tw-rounded-lg"
-                        src="assets/images/thumbs/project-arvitta-browser.png" alt="Arvitta Browser OS" /></a>
+                      target="_blank"><img class="w-100 tw-rounded-lg" src="assets/images/thumbs/project-arvitta-browser.png" alt="Arvitta Browser OS" width="800" height="450" loading="lazy" decoding="async" /></a>
                   </div>
                 </div>
 
@@ -757,7 +743,7 @@
                     </div>
                     <div class="portfolio-three-button">
                       <a class="portfolio-three-btn tw-w-8 tw-h-8 lh-1 d-inline-flex justify-content-center align-items-center text-heading rounded-circle hover-bg-main-two-600 hover-text-white"
-                        href="https://github.com/Huligeshdh/Arvitta/" target="_blank"><i class="ph ph-arrow-up-right"></i></a>
+                        href="https://github.com/Huligeshdh/Arvitta/" target="_blank"><span class="visually-hidden">View Arvitta AI Platform Project</span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="portfolio-thumb not-hide-cursor fw-bold mb-0 tw-rounded-lg" data-cursor="View">
@@ -801,13 +787,12 @@
                     </div>
                     <div class="portfolio-three-button">
                       <a class="portfolio-three-btn tw-w-8 tw-h-8 lh-1 d-inline-flex justify-content-center align-items-center text-heading rounded-circle hover-bg-main-two-600 hover-text-white"
-                        href="https://github.com/Huligeshdh" target="_blank"><i class="ph ph-arrow-up-right"></i></a>
+                        href="https://github.com/Huligeshdh" target="_blank"><span class="visually-hidden">View Arvitta Browser OS Project</span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="portfolio-thumb not-hide-cursor fw-bold mb-0 tw-rounded-lg" data-cursor="View">
                     <a class="d-block cursor-hide tw-rounded-lg" href="https://github.com/Huligeshdh"
-                      target="_blank"><img class="w-100 tw-rounded-lg"
-                        src="assets/images/thumbs/project-nyayavadi-legal.png" alt="Nyayavadi" /></a>
+                      target="_blank"><img class="w-100 tw-rounded-lg" src="assets/images/thumbs/project-nyayavadi-legal.png" alt="Nyayavadi" width="800" height="450" loading="lazy" decoding="async" /></a>
                   </div>
                 </div>
 
@@ -844,13 +829,12 @@
                     </div>
                     <div class="portfolio-three-button">
                       <a class="portfolio-three-btn tw-w-8 tw-h-8 lh-1 d-inline-flex justify-content-center align-items-center text-heading rounded-circle hover-bg-main-two-600 hover-text-white"
-                        href="https://github.com/Huligeshdh/artinaai" target="_blank"><i class="ph ph-arrow-up-right"></i></a>
+                        href="https://github.com/Huligeshdh/artinaai" target="_blank"><span class="visually-hidden">View ArtinaAI Project</span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="portfolio-thumb not-hide-cursor fw-bold mb-0 tw-rounded-lg" data-cursor="View">
                     <a class="d-block cursor-hide tw-rounded-lg" href="https://github.com/Huligeshdh/artinaai"
-                      target="_blank"><img class="w-100 tw-rounded-lg"
-                        src="assets/images/thumbs/project-artina-grievance.png" alt="ArtinaAI" /></a>
+                      target="_blank"><img class="w-100 tw-rounded-lg" src="assets/images/thumbs/project-artina-grievance.png" alt="ArtinaAI" width="800" height="450" loading="lazy" decoding="async" /></a>
                   </div>
                 </div>
               </div>
@@ -1042,8 +1026,7 @@
                         class="testimonial-three-wrapper d-flex align-items-center tw-gap-9 tw-rounded-lg tw-mb-705 swiper-slide"
                         data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                         <div class="testimonial-three-thumb position-relative z-1" style="min-width: 220px;">
-                          <img class="w-100 h-100 tw-rounded-lg" src="assets/images/user-profile.jpeg"
-                            alt="Parul University" style="object-fit: cover;" />
+                          <img class="w-100 h-100 tw-rounded-lg" src="assets/images/user-profile.jpeg" alt="Parul University" width="220" height="220" loading="lazy" decoding="async" style="object-fit: cover;" />
                         </div>
                         <div class="testimonial-three-content w-100">
                           <div class="tw-mb-4">
@@ -1069,8 +1052,7 @@
                         class="testimonial-three-wrapper d-flex align-items-center tw-gap-9 tw-rounded-lg tw-mb-705 swiper-slide"
                         data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                         <div class="testimonial-three-thumb position-relative z-1" style="min-width: 220px;">
-                          <img class="w-100 h-100 tw-rounded-lg" src="assets/images/user-profile.jpeg"
-                            alt="School Education" style="object-fit: cover;" />
+                          <img class="w-100 h-100 tw-rounded-lg" src="assets/images/user-profile.jpeg" alt="School Education" width="220" height="220" loading="lazy" decoding="async" style="object-fit: cover;" />
                         </div>
                         <div class="testimonial-three-content w-100">
                           <div class="tw-mb-4">
@@ -1122,8 +1104,7 @@
                   </div>
                   <div class="footer-three-top-info tw-p-705 tw-rounded-lg d-flex tw-gap-6">
                     <div class="footer-three-top-thumb tw-w-160-px">
-                      <img class="tw-rounded-lg w-100" src="assets/images/user-profile-nobg.png"
-                        alt="Huligesh D Hosamani Pavar" style="object-fit: contain; height: 160px;" />
+                      <img class="tw-rounded-lg w-100" src="assets/images/user-profile-nobg.png" alt="Huligesh D Hosamani Pavar" width="160" height="160" loading="lazy" decoding="async" style="object-fit: contain; height: 160px;" />
                     </div>
                     <div class="footer-three-top-content d-flex justify-content-between flex-column">
                       <div>
@@ -1223,7 +1204,7 @@
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                       <a class="footer-three-back-to-top tw-w-170 tw-h-170 lh-1 d-inline-flex justify-content-center align-items-center bg-main-two-600 text-white tw-text-3xl rounded-circle"
-                        href="#"><i class="ph ph-arrow-up"></i></a>
+                        href="#" aria-label="Back to top"><i class="ph ph-arrow-up"></i></a>
                     </div>
                     <div class="text-lg-end" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                       <h4 class="tw-text-2xl text-white tw-mb-2">
@@ -1252,13 +1233,12 @@
             </div>
           </div>
           <div>
-            <img class="position-absolute top-0 start-0 z-n1" src="assets/images/shapes/footer-three-bg-shape.png"
-              alt="shape" />
+            <img class="position-absolute top-0 start-0 z-n1" src="assets/images/shapes/footer-three-bg-shape.png" alt="" width="1800" height="600" loading="lazy" decoding="async" aria-hidden="true" />
           </div>
         </section>
       </div>
     </div>
-    <!-- Jquery js -->
+    </main>`n    <!-- Jquery js -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!-- phosphor Js -->
     <script src="assets/js/phosphor-icon.js"></script>

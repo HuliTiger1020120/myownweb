@@ -1,6 +1,6 @@
 var head = document.getElementsByTagName("head")[0];
 
-for (const weight of ["regular", "thin", "light", "bold", "fill", "duotone"]) {
+for (const weight of ["regular", "fill"]) {
   var link = document.createElement("link");
   link.rel = "stylesheet";
   link.type = "text/css";
@@ -8,3 +8,4 @@ for (const weight of ["regular", "thin", "light", "bold", "fill", "duotone"]) {
     "https://unpkg.com/@phosphor-icons/web@2.1.1/src/" + weight + "/style.css";
   head.appendChild(link);
 }
+

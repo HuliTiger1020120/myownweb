@@ -11270,12 +11270,58 @@ body.tw-magic-cursor #magic-cursor {
   /* Back to top button adjustment on mobile */
   .back-to-top-wrapper,
   .back-to-top-btn {
-    bottom: 12px !important;
-    right: 12px !important;
-    width: 36px !important;
-    height: 36px !important;
+    bottom: 16px !important;
+    right: 16px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
     z-index: 9999 !important;
+  }
+
+  /* Mobile Tap Targets (Min 44px for touch accessibility) */
+  .portfolio-three-btn,
+  .tw-offcanvas-open-btn,
+  .tw-offcanvas-2-close-btn,
+  .footer-three-social a,
+  .header-three-social a {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Mobile rendering performance & LCP optimization */
+  .service-three-area,
+  .portfolio-three-area,
+  .feature-three-area,
+  .testimonial-three-area,
+  .footer-three-area {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
+
+  /* Hide heavy decorative background shapes on small mobile screens */
+  .about-three-shape,
+  .banner-three-line-shape {
+    display: none !important;
   }
 }
 
-/*# sourceMappingURL=main.css.map */
+/* Visually Hidden Utility for Screen Readers & Accessibility */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/*# sourceMappingURL=main.css.map */
