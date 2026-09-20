@@ -1277,7 +1277,7 @@
     <!-- custom GSAP -->
     <script src="assets/js/custom-gsap.js"></script>
     <!-- main js -->
-    <script src="assets/js/main.js?v=3.1.0"></script>
+    <script src="assets/js/main.js?v=4.0.0"></script>
     <!-- cursor js -->
     <script src="assets/js/tw-cursor.js"></script>
 
@@ -1359,6 +1359,71 @@
         if (errorMsg) errorMsg.style.display = "none";
         emailInput.classList.remove("is-invalid");
         return true;
+      };
+
+      window.handleContactFormSubmit = function(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        
+        var form = document.getElementById("contact-form");
+        if (!form) return false;
+
+        var emailInput = document.getElementById("contact-email") || form.querySelector('input[name="email"]');
+        if (!emailInput) return false;
+
+        var check = window.validateEmailAddress ? window.validateEmailAddress(emailInput.value) : { valid: true };
+        if (!check.valid) {
+          if (window.validateContactForm) window.validateContactForm(e, emailInput);
+          alert(check.message);
+          emailInput.focus();
+          return false;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        var originalBtnText = btn ? btn.innerHTML : "SUBMIT MESSAGE";
+        if (btn) {
+          btn.innerHTML = "SENDING...";
+          btn.disabled = true;
+        }
+
+        var formData = new FormData(form);
+        var json = JSON.stringify(Object.fromEntries(formData));
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async function(response) {
+            var res = await response.json();
+            if (btn) {
+              btn.innerHTML = originalBtnText;
+              btn.disabled = false;
+            }
+            if (response.status == 200) {
+              if (window.showToastMessage) {
+                window.showToastMessage("Message Sent Successfully!", "Thank you for reaching out. I will get back to you shortly.", "success");
+              }
+              alert("Message Sent Successfully!\n\nThank you for reaching out to Huligesh D Hosamani Pavar. Your message has been sent successfully and I will reply back to your email address shortly.");
+              form.reset();
+              var errorMsg = document.getElementById("email-error-msg");
+              if (errorMsg) errorMsg.style.display = "none";
+              emailInput.classList.remove("is-invalid");
+            } else {
+              alert(res.message || "Something went wrong. Please try again.");
+            }
+          })
+          .catch(function(error) {
+            if (btn) {
+              btn.innerHTML = originalBtnText;
+              btn.disabled = false;
+            }
+            alert("Something went wrong. Please check your network connection and try again.");
+          });
+
+        return false;
       };
     </script>
 </body>
